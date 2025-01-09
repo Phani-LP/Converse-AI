@@ -1,0 +1,80 @@
+body {
+    background-color: #212529;
+    font-family: sans-serif;
+    color: rgb(222, 222, 222);
+    overflow: hidden;
+}
+
+.form-division {
+    height: auto;
+    width: 350px;
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: rgb(0, 0, 0);
+    border: 2px solid rgb(83, 83, 83);
+}
+
+h2 {
+    text-align: center;
+}
+
+.btn {
+    margin-left: 40%;
+    background-color: rgb(0, 0, 0);
+    color: rgb(220, 220, 220);
+    padding: 6px 12px;
+    margin-top: 20px;
+    border-radius: 5px;
+    height: 30px;
+    width: auto;
+    font-weight: bold;
+    font-size: medium;
+    border: 1px solid rgb(220, 220, 220);
+}
+
+.btn:hover {
+    cursor: pointer;
+    background-color: rgb(223, 223, 223);
+    color: rgb(0, 0, 0);
+}
+
+.input-field {
+    float: right;
+    margin-top: 2px;
+    background: transparent;
+    width: 210px;
+    padding: 4px;
+    border: 1px solid rgb(79, 79, 79);
+    border-radius: 3px;
+    color: white;
+}
+
+label {
+    padding: 4px;
+    margin-top: 25px;
+}
+
+select,
+option {
+    background-color: black;
+    color: rgb(122, 121, 121);
+    border: 1px solid rgb(79, 79, 79);
+    text-align: center;
+    width: 220px;
+    float: right;
+    padding: 4px;
+    margin-top: 2px;
+    border-radius: 3px;
+}
+
+select:focus,
+option:focus {
+    color: white;
+    border: 1px solid white;
+}
+
+input[type="file"] {
+    background-color: #000000;
+    color: rgb(179, 179, 179);
+}

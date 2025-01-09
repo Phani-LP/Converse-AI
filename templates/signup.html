@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <link rel="stylesheet" href="{% static 'css/register.css' %}">
+  <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+</head>
+
+<body>
+  <div class="form-division">
+    <h2>Registration Details</h2>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p}}
+      <button type="submit" class="btn">Submit</button>
+    </form>
+  </div>
+</body>
+
+</html>

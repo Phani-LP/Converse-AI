@@ -1,0 +1,35 @@
+html {
+  height: 100%;
+}
+
+.nav {
+  background-color: #09522b;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  font-family: sans-serif;
+}
+
+.nav a {
+  float: left;
+  color: #f2f2f2; 
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.nav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.nav a.active {
+  background-color: #049560;
+  color: white;
+}
+
+.nav a.active:hover {
+  background-color: #ddd;
+  color: black;
+}

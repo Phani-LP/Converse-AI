@@ -1,0 +1,2 @@
+pip install google-generativeai # import as import google.generativeai as genai
+python -m pip install Pillow    # To Save Images

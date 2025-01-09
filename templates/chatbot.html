@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+    <style>
+        body{
+            background-color:#212529;
+            font-family: sans-serif;
+            color: rgb(222, 222, 222);
+        }
+  
+        .chatbot {
+            height: 70%;
+            width: 900px;
+            margin: auto;
+            border: 2px solid black;
+            border-radius: 10px;
+            font-weight: normal;
+            padding: 20px;
+        }
+
+        .messager,
+        .chat {
+            border: 2px solid black;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+        }
+        .prompt{
+            width: 80%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid black;
+            background-color: #212529;
+            color: white;
+
+        }
+        .send-btn{
+            width: 15%;
+            height: 37px;
+            background-color: #212529;
+            border-radius: 7px;
+            border: 1px solid black;;
+            color: rgb(204, 204, 204);
+            font-size: 16px;
+        }
+        .send-btn:hover{
+            background-color: #343a40;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <div class="nav-links">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'converseAI' %}"  class="active">ConverseAI</a>
+            <a href="{% url 'contact' %}">Contact</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
+        
+        {% if user.is_authenticated %}
+            <div class="user_name"></div>
+                User: {{user}}
+            </div>
+        {% endif %}   
+    </div>
+
+    <div class="chatbot">
+        <h1 style="margin-top: 10px;">Welcome to ConverseAI</h1>
+        <div class="chat">
+            <p class="user_prompt" style="height:30px; overflow: auto; padding: 10px;"> {{user}}: {{ user_input }}</p>
+            <p class="ai_prompt" style="height:320px; overflow: auto; padding: 10px;">{{ ai_response }}</p>
+        </div>
+        <div class="messager">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="text" id="input_message" class="prompt" name="user_input" placeholder="Enter your message">
+            <button type="submit" class="send-btn">Send</button>
+        </form>
+        </div>
+    </div>
+    <div class="copy-right" style="text-align: center; margin: 15px 0;">
+        &copy; 2024 Dasari Naga Phanindra. All rights reserved.
+    </div>
+</body>
+</html>

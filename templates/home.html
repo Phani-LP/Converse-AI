@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+    <style>
+        body{
+    background-color:#212529;
+    font-family: sans-serif;
+    color: rgb(222, 222, 222);
+}
+  
+        .chatbot {
+            height: 70%;
+            width: 800px;
+            margin: auto;
+            border: 2px solid black;
+            border-radius: 10px;
+            font-family: sans-serif;
+            font-weight: normal;
+            padding: 20px;
+        }
+
+        .messager,
+        .chat {
+            border: 2px solid black;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <div class="nav-links">
+            <a href="{% url 'home' %}"  class="active">Home</a>
+            <a href="{% url 'converseAI' %}" >ConverseAI</a>
+            <a href="{% url 'contact' %}">Contact</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}">Logout</a>
+            {% endif %} 
+        </div>
+        
+        {% if user.is_authenticated %}
+            <div class="user_name"></div>
+                User: {{user}}
+            </div>
+        {% else %}
+            <div class="user_name">
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'signup' %}">Signup</a>
+            </div>
+        {% endif %}   
+    </div>
+    <div class="container">
+        Hi, I am Django Chatbot.
+        My Features:<br>
+        1. I can chat with you.<br>
+        2. I can provide you with the latest news.<br>
+        3. I can provide you with the weather information.<br>
+        4. I can provide you with the latest stock market information.<br>
+        5. I can provide you with the latest sports information.<br>
+        6. I can provide you with the latest technology information.<br>
+        And many more...<br>
+    </div>
+
+    </div>
+</body>
+</html>
