@@ -103,7 +103,7 @@ def converseAI(request):
     if request.method == 'POST':
         user_input = request.POST.get('user_input') 
         try:
-            genai.configure(api_key="AIzaSyDM7a57V5Zjyk7fJG0BMxeyg38CWtBin-k")
+            genai.configure(api_key="#Get your own key at:Google Gemini API")
             model = genai.GenerativeModel("gemini-1.5-flash")
             # user_input = input("Enter your prompt: ")
             response = model.generate_content(user_input)
