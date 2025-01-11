@@ -1,5 +1,5 @@
 Update Information:
-Updated to GEMINI-Flash from CohereAI for fast & reliable service.<br><br>
+Updated to GEMINI-Flash from CohereAI for better features.<br><br>
 <h3><strong>Gemini Flash is a family of fast and versatile multimodal models. Here are some of its key features:<br></strong></h3>
 <strong>Multimodal Capabilities:<br></strong>
 Can process and generate various forms of data, including text, images, video, and audio.<br>
