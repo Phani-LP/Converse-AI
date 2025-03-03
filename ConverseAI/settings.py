@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+from ConverseAI.variables import name, user, password, host, port
 
 # custome login url
 LOGIN_URL = '/login_user/'
@@ -56,10 +57,22 @@ WSGI_APPLICATION = 'ConverseAI.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": name,
+        "USER": user,
+        "PASSWORD": password,
+        "HOST": host,
+        "PORT": port,
     }
 }
 
