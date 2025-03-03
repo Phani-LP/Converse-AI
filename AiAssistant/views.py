@@ -5,18 +5,13 @@ from django.contrib import messages
 from .forms import StudentForm, ContactForm
 from .models import StudentRegister, StudentContact,StudentChat
 from django.contrib.auth.decorators import login_required
-from google import generativeai as genai
+from google import generativeai as genai 
+from ConverseAI.variables import API_KEY #for secure use of api keys
+from django.contrib import messages
+import markdown
 
 def home(request):
     return render(request, 'home.html')
-
-from django.shortcuts import redirect
-from django.contrib.auth import authenticate, login
-from django.contrib import messages
-
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from django.contrib import messages
 
 def login_user(request):
     if request.method == 'POST':
@@ -37,8 +32,10 @@ def login_user(request):
                 if user_obj_name:
                     login(request, user_obj_name)
                     return redirect(next_url)
-            except UsersModel.DoesNotExist:
-                pass  
+            except:# UsersModel.DoesNotExist
+                # next_url = request.GET.get('next', 'home')
+                messages.error(request, "User Name or Password is incorrect.")
+                return redirect('login', {'next': next_url})  
             
         if user is not None:
             login(request, user)
@@ -49,7 +46,8 @@ def login_user(request):
     else:
         # next_url = request.GET.get('next', 'home')
         # if not next_url:  # Check if 'next' is empty
-        #     next_url = 'home'  # Default to 'home' if 'next' is empty  "These 3 same as below one line."
+        #     next_url = 'home'  # Default to 'home' if 'next' is empty  
+        # "The above 3 lines are do same as below one line."
         next_url = request.GET.get('next', 'home')
         return render(request, 'login.html', {'next': next_url})
 
@@ -82,9 +80,6 @@ def signup(request):
         form = StudentForm()
     return render(request, 'signup.html', {'form': form})
 
-
-
-
 @login_required
 def contact(request):
     if request.method == 'POST':
@@ -103,21 +98,27 @@ def converseAI(request):
     if request.method == 'POST':
         user_input = request.POST.get('user_input') 
         try:
-            genai.configure(api_key="#Get your own key at:Google Gemini API")
+            # genai.configure(api_key="#Get your own key at:Google Gemini API")
+            genai.configure(api_key=API_KEY)
             model = genai.GenerativeModel("gemini-1.5-flash")
-            # user_input = input("Enter your prompt: ")
             response = model.generate_content(user_input)
             print(response.text)
-            ai_response = response.text
+            ai_response = response.text # not useful for user to read
+            ai_response = markdown.markdown(ai_response) # will turn response to markdown
+            # we use "|safe" in html to render markdown rather than just displaying it.
         except Exception as e:
             ai_response = f"An error occurred: {str(e)}" 
 
     else:
         user_input = ''
         ai_response = ''
-
+    # we use "|safe" in html to render markdown rather than just displaying it.
     context = {'user_input': user_input, 'ai_response': ai_response}
     return render(request, 'chatbot.html', context)
 
-
-# from ConverseAI.settings import GEMINI_API_KEY
+def details(request):
+    user_name = request.user.username
+    data = StudentRegister.objects.filter(name=user_name)
+    # print(data) #<QuerySet [<StudentRegister: Phani>]>
+    # print(request.user.username) #Phani
+    return render(request, 'user-details.html', {'data':data})
