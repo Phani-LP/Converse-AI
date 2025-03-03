@@ -7,49 +7,106 @@
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'css/nav.css' %}">
     <style>
-        body{
-            background-color:#212529;
+        body {
+            background-color: #4c5c6b;
             font-family: sans-serif;
             color: rgb(222, 222, 222);
+            margin: 0;
+            padding: 0;
         }
-  
+    
         .chatbot {
             height: 70%;
             width: 900px;
             margin: auto;
+            margin-top: 10px;
             border: 2px solid black;
             border-radius: 10px;
             font-weight: normal;
             padding: 20px;
+            background-color: #343a40;
         }
-
+    
         .messager,
         .chat {
             border: 2px solid black;
             padding: 10px;
             margin: 5px;
             border-radius: 5px;
+            background-color: #212529;
         }
-        .prompt{
+    
+        .prompt {
             width: 80%;
             padding: 10px;
             border-radius: 5px;
             border: 1px solid black;
             background-color: #212529;
             color: white;
-
         }
-        .send-btn{
+    
+        .prompt:hover {
+            border: 1px solid white;
+        }
+    
+        .send-btn {
             width: 15%;
             height: 37px;
             background-color: #212529;
             border-radius: 7px;
-            border: 1px solid black;;
+            border: 1px solid black;
             color: rgb(204, 204, 204);
             font-size: 16px;
         }
-        .send-btn:hover{
+    
+        .send-btn:hover {
             background-color: #343a40;
+            border: 1px solid white;
+        }
+    
+        h3 {
+            padding-left: 6px;
+        }
+    
+        footer {
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding-bottom: 10px;
+        }
+    
+        /* Styles for the chatbot response container */
+        .ai_response_container {
+            height: 280px; /* Fixed height for the response container */
+            overflow-y: auto; /* Enable vertical scrolling */
+            padding: 10px;
+            background-color: #212529; /* Match the chat background */
+            border-radius: 5px; /* Rounded corners */
+            border: 1px solid #495057; /* Add a border */
+        }
+    
+        .ai_prompt {
+            margin: 0; /* Remove default margin */
+        }
+    
+        /* Styles for lists and bold text in the response */
+        .ai_prompt ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+    
+        .ai_prompt li {
+            margin-bottom: 10px;
+        }
+    
+        .ai_prompt strong {
+            color: #049560;
+        }
+    
+        .ai_prompt p {
+            margin-bottom: 15px;
         }
     </style>
 </head>
@@ -64,28 +121,34 @@
         </div>
         
         {% if user.is_authenticated %}
-            <div class="user_name"></div>
-                User: {{user}}
+            <div class="user_name">
+                <a href="{% url 'details' %}">User: {{user}}</a>
             </div>
         {% endif %}   
     </div>
 
+
     <div class="chatbot">
-        <h1 style="margin-top: 10px;">Welcome to ConverseAI</h1>
+        <h3 style="margin-top: 10px;">Welcome to ConverseAI</h3>
         <div class="chat">
-            <p class="user_prompt" style="height:30px; overflow: auto; padding: 10px;"> {{user}}: {{ user_input }}</p>
-            <p class="ai_prompt" style="height:320px; overflow: auto; padding: 10px;">{{ ai_response }}</p>
+            <p class="user_prompt" style="height:30px; overflow: auto; padding: 10px;"> 
+                <strong>{{user}}:</strong> {{ user_input }}
+            </p>
+            <!-- Add a scrollable container for the AI response -->
+            <div class="ai_response_container">
+                <p class="ai_prompt">{{ ai_response|safe }}</p>
+            </div>
         </div>
         <div class="messager">
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="text" id="input_message" class="prompt" name="user_input" placeholder="Enter your message">
-            <button type="submit" class="send-btn">Send</button>
-        </form>
+                <button type="submit" class="send-btn">Send</button>
+            </form>
         </div>
     </div>
-    <div class="copy-right" style="text-align: center; margin: 15px 0;">
+    <footer>
         &copy; 2024 Dasari Naga Phanindra. All rights reserved.
-    </div>
+    </footer>
 </body>
 </html>

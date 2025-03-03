@@ -15,14 +15,13 @@
             <a href="{% url 'converseAI' %}">ConverseAI</a>
             <a href="{% url 'contact' %}" class="active">Contact</a>
             <a href="{% url 'logout' %}">Logout</a>
-            
         </div>
         
         {% if user.is_authenticated %}
-            <div class="user_name"></div>
-                User: {{user}}
+            <div class="user_name">
+                <a href="{% url 'details' %}">User: {{user}}</a>
             </div>
-        {% endif %}   
+        {% endif %}    
     </div>
 
     <div class="form-division">

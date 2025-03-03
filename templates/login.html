@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +14,7 @@
     <div class="nav">
         <div class="nav-links">
             <a href="{% url 'home' %}">Home</a>
-            <a href="{% url 'converseAI' %}"  class="active">ConverseAI</a>
+            <a href="{% url 'converseAI' %}" class="active">ConverseAI</a>
             <a href="{% url 'contact' %}">Contact</a>
         </div>
     </div>
@@ -32,12 +33,17 @@
                     {% endif %}
                 {% endfor %}
             {% endif %}
-            
+
             <form method="POST" action="{% url 'login' %}?next={{ request.GET.next }}">
                 <input type="hidden" name="next" value="{{ request.GET.next }}">
                 {% csrf_token %}
                 <table>
                     <tr>
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p>{{ message }}</p><br>
+                            {% endfor %}
+                        {% endif %}
                         <!-- <td><label for="inputName" class="form-label">Username :</label></td> -->
                         <td><input type="text" class="form-control" name="username" placeholder="Username"></td>
                     </tr>
@@ -52,6 +58,7 @@
                 Didn't have an account? <a href="{% url 'signup' %}">signup here</a>
             </div>
         </div>
-    </div>
+    </div>  
 </body>
+
 </html>
