@@ -8,4 +8,5 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('contact/', views.contact, name='contact'),
     path('converseAI/', views.converseAI, name='converseAI'),
+    path('details/', views.details, name='details'),
 ]

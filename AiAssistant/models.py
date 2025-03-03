@@ -1,6 +1,6 @@
 from django.db import models
 # specifying the choices - [(Value, DisplayText)] or [(V,((V,DT),(V,DT))] 
-from django.core.validators import MinLengthValidator
+# from django.core.validators import MinLengthValidator
 
 class StudentRegister(models.Model):
     GENDER_CHOICES = (
@@ -16,7 +16,8 @@ class StudentRegister(models.Model):
         choices = GENDER_CHOICES,
         default = 'Not Mentioned')
     email = models.EmailField()
-    password = models.CharField(max_length=32, validators=[MinLengthValidator(8)])
+    # password = models.CharField(max_length=32, validators=[MinLengthValidator(8)]
+    password = models.CharField(max_length=32)
     mobile = models.IntegerField()
     college = models.CharField(max_length=250)
     photo = models.ImageField(upload_to="images/") 

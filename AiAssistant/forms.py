@@ -28,7 +28,7 @@ class StudentForm(forms.ModelForm):
         'placeholder' : 'Email Address',
         'class' : 'input-field'
     }))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={
+    password = forms.CharField(widget=forms.TextInput(attrs={
         'placeholder' : 'Password',
         'class' : 'input-field'
     }))
