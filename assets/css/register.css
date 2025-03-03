@@ -3,6 +3,8 @@ body {
     font-family: sans-serif;
     color: rgb(222, 222, 222);
     overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 .form-division {

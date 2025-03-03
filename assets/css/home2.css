@@ -30,6 +30,11 @@ p {
     text-align: center;
 }
 
+ul {
+    list-style-type: disc;
+    padding-left: 40px;
+}
+
 li {
     margin-bottom: 10px;
 }
@@ -40,7 +45,7 @@ li {
 
 .features ul, .how-it-used ul, .other-models ul {
     background-color: #343a40;
-    padding: 15px 15px 15px 25px;
+    padding: 15px;
     border-radius: 5px;
     border: 1px solid #495057;
 }

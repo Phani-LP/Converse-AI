@@ -4,7 +4,7 @@ body {
     color: rgb(222, 222, 222);
     margin: 0;
     padding: 0;
-    /* padding-top: 60px; Add padding to account for the fixed navbar */
+    padding-top: 60px; /* Add padding to account for the fixed navbar */
 }
 
 .form-division {
