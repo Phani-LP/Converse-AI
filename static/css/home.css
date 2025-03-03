@@ -1,28 +1,46 @@
-html {
-  background-color: rgb(222, 222, 222);
-  color: rgb(0, 0, 0);
-  margin: 0;
+body {
+    background-color: #212529;
+    font-family: sans-serif;
+    color: rgb(222, 222, 222);
+    margin: 0;
+    padding: 0;
 }
 
-.nav {
-  background-color: #f5f5f5;
-  overflow: hidden;
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #2c3034;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.nav a {
-  float: left;
-  color: rgb(0, 0, 0);
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
+h1 {
+    color: #049560;
+    text-align: center;
 }
 
-.nav a:hover {
-  background-color: #ddd;
-} 
+h2 {
+    color: #049560;
+    margin-top: 20px;
+}
 
-.active {
-  background-color: #97dffc;
-  color: white;
+p {
+    line-height: 1.6;
+    text-align: center;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+.features, .how-it-used, .other-models {
+    margin-bottom: 30px;
+}
+
+.features ul, .how-it-used ul, .other-models ul {
+    background-color: #343a40;
+    padding: 15px 15px 15px 25px;
+    border-radius: 5px;
+    border: 1px solid #495057;
 }
