@@ -1,5 +1,7 @@
-from django.urls import path
+from django.urls import path, reverse_lazy
 from . import views
+
+app_name = 'AiAssistant'
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -9,4 +11,6 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('converseAI/', views.converseAI, name='converseAI'),
     path('details/', views.details, name='details'),
+    path('StudentRegister/<int:pk>/update', 
+         views.UserDetailsUpdateView.as_view(success_url=reverse_lazy('AiAssistant:details')), name='data_update'),
 ]
