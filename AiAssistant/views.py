@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy
+from .owner import OwnerUpdateView
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -8,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from google import generativeai as genai 
 from ConverseAI.variables import API_KEY #for secure use of api keys
 from django.contrib import messages
-import markdown
+import markdown #to turn response into the markdown (markdown was rendered in html using " form.as_p | safe")
 
 def home(request):
     return render(request, 'home.html')
@@ -21,7 +23,7 @@ def login_user(request):
         next_url = request.POST.get('next')  # Get the 'next' parameter
 
         if not next_url:  # Check if 'next' is empty
-            next_url = 'home'  # Default to 'home' if 'next' is empty
+            next_url = 'AiAssistant:home'  # Default to 'home' if 'next' is empty
 
         if user is None:
             try:
@@ -35,7 +37,7 @@ def login_user(request):
             except:# UsersModel.DoesNotExist
                 # next_url = request.GET.get('next', 'home')
                 messages.error(request, "User Name or Password is incorrect.")
-                return redirect('login', {'next': next_url})  
+                return redirect('AiAssistant:login', {'next': next_url})  
             
         if user is not None:
             login(request, user)
@@ -48,7 +50,7 @@ def login_user(request):
         # if not next_url:  # Check if 'next' is empty
         #     next_url = 'home'  # Default to 'home' if 'next' is empty  
         # "The above 3 lines are do same as below one line."
-        next_url = request.GET.get('next', 'home')
+        next_url = request.GET.get('next', 'AiAssistant:home')
         return render(request, 'login.html', {'next': next_url})
 
 def logout_user(request):
@@ -73,9 +75,13 @@ def signup(request):
                 # to make the user unable to login panel, comment the active & staff. 
             ) #new superuser with full administrative privileges created.
             
-            form.save()  # Save form data to database
+            # form.save()  # Save form data to database
+            # Save the StudentRegister record
+            student = form.save(commit=False)
+            student.user = user  # Link the StudentRegister to the User
+            student.save()  
             messages.success(request, "Registration successful, Now please login with your data!")
-            return redirect('login')
+            return redirect('AiAssistant:login')
     else:
         form = StudentForm()
     return render(request, 'signup.html', {'form': form})
@@ -116,9 +122,38 @@ def converseAI(request):
     context = {'user_input': user_input, 'ai_response': ai_response}
     return render(request, 'chatbot.html', context)
 
+@login_required
 def details(request):
-    user_name = request.user.username
-    data = StudentRegister.objects.filter(name=user_name)
-    # print(data) #<QuerySet [<StudentRegister: Phani>]>
-    # print(request.user.username) #Phani
-    return render(request, 'user-details.html', {'data':data})
+    user_name = request.user
+    try:
+        # Fetch the StudentRegister record for the logged-in user
+        data = StudentRegister.objects.filter(user=user_name)  # Use filter() to return a queryset
+    except StudentRegister.DoesNotExist:
+        messages.warning(request, "No user details found. Please register your details.")
+        return redirect('AiAssistant:signup')
+
+    context = {
+        'data': data,  # Pass the queryset to the template
+    }
+    return render(request, 'user_details.html', context)
+
+class UserDetailsUpdateView(OwnerUpdateView):
+    model = StudentRegister
+    fields = ['name', 'age', 'gender', 'email', 'password', 'mobile', 'studentid', 'college', 'photo', 'percentage']
+    template_name = 'update.html'
+    success_url = reverse_lazy('AiAssistant:details')
+
+    def get_object(self, queryset=None):
+        # Ensure the object belongs to the logged-in user
+        obj = get_object_or_404(StudentRegister, id=self.kwargs['pk'], user=self.request.user)
+        return obj
+
+    def form_valid(self, form):
+        # Update the StudentRegister model
+        response = super().form_valid(form)
+
+        # Update the associated User model
+        user = self.request.user
+        user.username = form.cleaned_data['name']
+        user.save()
+        return response
