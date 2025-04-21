@@ -167,9 +167,8 @@ Fork the repository.
 Create a new branch for your feature or bug fix.
 Submit a pull request with a detailed description of your changes.
 
-
-## 📃License
-This project is licensed under the MIT License. See the LICENSE file for more details.
+# ## 📃License
+# This project is licensed under the MIT License. See the LICENSE file for more details.
 
 ## 📧Contact
 For any questions or feedback, feel free to reach out:
