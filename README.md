@@ -95,18 +95,28 @@ Follow these steps to set up the project on your local machine:
    pip install -r requirements.txt
    ```
 
-4. **Set Up Environment Variables:**<br>
-   Add your Google Gemini API Key in a new file named variables.py:
+4. **Set Up Environment Variables**:
+   - Instead of hardcoding sensitive information like the **Google Gemini API Key**, use environment variables for better security.
+   - Create a `.env` file in the root directory of your project and add the API key:
+     ```
+     # .env
+     GOOGLE_GEMINI_API_KEY=your-google-gemini-api-key
+     ```
 
-   ```bash
-   # filepath: ConverseAI/variables.py
-   API_KEY = "your-google-gemini-api-key"
-   ```
+   - Install the `python-decouple` package to manage environment variables:
+     ```bash
+     pip install python-decouple
+     ```
 
-   <code>
-   1 vulnerability 
-   hardcoded-credentials Embedding credentials in source code  risks unauthorized access 
-   </code>
+   - Update your `settings.py` or a dedicated configuration file to load the API key securely:
+     ```python
+     # filepath: [settings.py](http://_vscodecontentref_/0)
+      decfromouple import config
+
+     API_KEY = config('GOOGLE_GEMINI_API_KEY')
+     ```
+
+   This approach ensures that sensitive information is not exposed in the source code and can be managed securely across different environments.
 
 5. **Apply Migrations:**
    ```bash
