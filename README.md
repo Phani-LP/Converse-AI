@@ -170,6 +170,8 @@ Submit a pull request with a detailed description of your changes.
 ## 📧Contact
 For any questions or feedback, feel free to reach out:
 
-Email: your-email@example.com
-GitHub: Your GitHub Profile
-Thank you for using ConverseAI! We hope it helps you unlock the full potential of AI in your projects. ``'
+Email: dnagaphanindrait@example.com
+GitHub: https://github.com/Phani-LP
+
+<hr>
+Thank you for using ConverseAI! I hope it helps you unlock the full potential of AI in your projects.🌎
