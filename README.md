@@ -3,7 +3,7 @@
 <table style="width: 100%; max-width: 800px; border: 0; border-collapse: collapse;">
   <tr>
    <td style="vertical-align: top; width: auto; border: none;">
-     <img src="converseai.jpg" alt="Sample Image" style="width: 1000px; height: auto; display: block;">
+     <img src="converseai.jpg" alt="Sample Image" style="width: 1100px; height: auto; display: block;">
     </td>
     <td style="vertical-align: top; border: none;">
      ConverseAI is an advanced AI-powered chatbot platform built using Django. It is designed to provide seamless and interactive communication experiences by leveraging the latest advancements in AI technology. Recently, the project has been upgraded to use **Google Gemini-Flash 1.5**, replacing CohereAI, to deliver enhanced multimodal capabilities, improved performance, and greater efficiency.
