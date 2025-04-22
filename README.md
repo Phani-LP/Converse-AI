@@ -1,12 +1,16 @@
 # ConverseAI
 
-<div style="display: flex; align-items: center; border: 1px solid black; padding: 10px;">
-  <div><img src="converseai.jpg" alt="ConverseAI Logo" style="width: 30%; object-fit: cover; margin-right: 10px;" />
- </div>
-   <div><span><strong>ConverseAI</strong> is an advanced AI-powered chatbot platform built using Django. It is designed to provide seamless and interactive communication experiences by leveraging the latest advancements in AI technology. Recently, the project has been upgraded to use **Google Gemini-Flash 1.5**, replacing CohereAI, to deliver enhanced multimodal capabilities, improved performance, and greater efficiency.</span></div>
-   
-</div>
----
+<table style="width: 100%; border: 0;">
+  <tr>
+    <td style="width: 300px; height:100%; vertical-align: top;">
+      <img src="converseai.jpg" alt="Sample Image" style="width: 150px; height: auto;">
+    </td>
+    <td style="vertical-align: top;">
+      ConverseAI is an advanced AI-powered chatbot platform built using Django. It is designed to provide seamless and interactive communication experiences by leveraging the latest advancements in AI technology. Recently, the project has been upgraded to use **Google Gemini-Flash 1.5**, replacing CohereAI, to deliver enhanced multimodal capabilities, improved performance, and greater efficiency.
+    </td>
+  </tr>
+</table>
+
 
 
 ## 🌟 Key Features of Gemini-Flash 1.5
